@@ -1,11 +1,11 @@
 # Gorefac-mod
 a little script for refactor go.mod name and files dependece
 
-###install
+Install
 
 go get github.com/GuillermoMajano/Gorefac-mod
 
-### run
+Run
 
 myproyect/ Gorefac-mod
 
