@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"os"
@@ -93,19 +94,24 @@ func (r *Rename) renameMod() {
 }
 
 func main() {
-
 	runApp()
 
 }
 
 func runApp() {
-	var rename = new(Rename)
 
-	root, _ := os.Getwd()
-	rename.dirRoot = root
+	var (
+		err    error
+		rename = &Rename{}
+	)
 
-	fmt.Print("\nInto new mod name: ")
-	fmt.Scanln(&rename.newName)
+	flag.StringVar(&rename.newName, "rename", " ", "contain new name for gomod")
+	flag.Parse()
+
+	rename.dirRoot, err = os.Getwd()
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	rename.renameMod()
 }
