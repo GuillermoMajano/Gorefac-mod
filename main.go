@@ -13,7 +13,7 @@ const modu = "/go.mod"
 
 type Rename struct {
 	name                      string
-	dirFiles                  []string
+	dirFiles                 []string
 	modName, newName, dirRoot string
 }
 
@@ -63,7 +63,7 @@ func (r Rename) refacFile() {
 }
 
 func (r Rename) doRefac(file []byte, dir string) error {
-	newconten := strings.Replace(string(file), r.modName, r.newName, 1)
+	newconten := strings.ReplaceAll(string(file), r.modName, r.newName)
 	err := os.WriteFile(dir, []byte(newconten), os.FileMode(0755))
 
 	if err != nil {
